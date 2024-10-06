@@ -33,7 +33,7 @@ jobs:
 
       - name: Prepare release keystore
         run: |
-            chmod 600 android/app/release.keystore
+            chmod 600 android/app/debug.keystore
           # Optional: If you're using encryption keys or passwords, set them using secrets in the GitHub repository.
         
 
