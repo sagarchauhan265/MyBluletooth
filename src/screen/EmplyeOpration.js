@@ -1,6 +1,7 @@
 import { View, Text, Button, FlatList, TouchableOpacity, Dimensions, TextInput } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Modal from "react-native-modal";
+import  useFetch  from '../hooks/useFetch';
 const deviceWidth = Dimensions.get("window").width;
 const deviceHeight = Dimensions.get("window").height;
 
@@ -67,15 +68,15 @@ const EMPlist = [
         "company": "JKL Industries"
     }
 ]
-const Main_list = () => {
+const EmplyeOpration = () => {
     const [list, setList] = useState([]);
     const [isModalVisible, setModalVisible] = useState(false);
     const [employeeName, setEmployeeName] = useState(null);
 
     const [age, setAge] = useState(null);
     const [company, setcompany] = useState(null);
-
-
+    const [data, error] = useFetch("https://jsonplaceholder.typicode.com/todos/1");
+    console.log("recevice useFEt",data)
     const renderItem = ({ item }) => {
         return (
             <View style={{ flex: 1, backgroundColor: 'grey', flexDirection: 'row', margin: 10, padding: 10, borderRadius: 10 }}>
@@ -119,13 +120,14 @@ const Main_list = () => {
     }
 
     useEffect(() => {
+
         setList(EMPlist);
-        console.log("first")
+     
     }, []);
 
     useEffect(() => {
         console.log(list);
-        console.log("second")
+     
     }, [list]);
 
     const toggleModal = () => {
@@ -133,6 +135,7 @@ const Main_list = () => {
     };
 
     const handleAdd = () => {
+   
         setModalVisible(false);
         const newItem = {
             employeeId: Math.floor(Math.random() * 100),
@@ -209,4 +212,4 @@ const Main_list = () => {
     )
 }
 
-export default Main_list
+export default EmplyeOpration;
